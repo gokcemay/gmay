@@ -100,15 +100,20 @@
             <div class="col-lg-6 tm-2-col-text"><h2 class="tm-2-col-text-title">Araştırma Tekniği</h2>
                 <p class="tm-2-col-text-description">Ar-Ge yapanlar ilk araştırmanın önemini bilirler. İşte bu aşamayı hızlandırmak ve üretilen/bulunan bilgiye ulaşmayı kolaylaştırmak için size Ar-Ge için kullanabileceğiniz bilişim araçları hakkında yardımcı olabilirim.<br>Bilgi için: <img src="img/eposta.png" alt="email"></p></div></section></div>
 
-        <!-- ===== SUBSTACK SECTION ===== -->
-        <div class="row" id="ai-mentor"><section class="col-12 text-center tm-social-section">
-            <h2 class="tm-section-title">Mühendisliğin Yapay Zeka Mentoru</h2>
-            <p class="tm-section-text">Yapay zeka destekli mühendislik ipuçları ve makalelerim için Substack bültenime göz atın.</p>
-            <a href="https://gmehmetay.substack.com" class="tm-bordered-btn" target="_blank">Bültene Git</a>
-            <div style="margin-top:40px;max-width:800px;margin-left:auto;margin-right:auto;">
-                <iframe src="https://gmehmetay.substack.com/embed" width="100%" height="600" style="border:0; background:transparent;" frameborder="0" scrolling="no"></iframe>
+<!-- SUBSTACK RSS FEED BÖLÜMÜ -->
+<div class="row" id="substack-rss-feed">
+    <section class="tm-section-substack" style="padding:60px 15px;">
+        <div class="col-xs-12">
+            <h2 class="tm-section-intro-title text-center" style="margin-bottom:25px;">
+                Mühendisliğin Yapay Zeka Mentoru
+            </h2>
+            <div id="rss-feed-container">
+                <ul id="rss-feed-list" style="list-style-type:none; padding:0;"></ul>
             </div>
-        </section></div>
+        </div>
+    </section>
+</div>
+
 
         <!-- ===== SOCIAL SECTION ===== -->
         <div class="row" id="social"><section class="tm-social-section text-center col-12">
@@ -164,5 +169,23 @@
             enableSwipe();$(window).resize(enableSwipe);
         });
     </script>
+<script>
+fetch('https://api.rss2json.com/v1/api.json?rss_url=https://gmehmetay.substack.com/feed')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById("rss-feed-list");
+    data.items.slice(0, 5).forEach(item => {
+      const li = document.createElement("li");
+      li.style.marginBottom = "10px";
+      li.innerHTML = `<a href="${item.link}" target="_blank" style="text-decoration:none; color:#007BFF;">${item.title}</a>`;
+      container.appendChild(li);
+    });
+  })
+  .catch(err => {
+    document.getElementById("rss-feed-container").innerHTML += "<p>Yazılar yüklenemedi.</p>";
+    console.error(err);
+  });
+</script>
+    
 </body>
 </html>
