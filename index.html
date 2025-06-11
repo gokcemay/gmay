@@ -77,9 +77,17 @@
     }
     footer {
       background-color: #2d2d2d;
-      color: white;
+      color: #aaa; /* Rengi biraz açalım */
       text-align: center;
-      padding: 20px 0;
+      padding: 30px 0;
+    }
+    footer a {
+        color: #f39c12;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+    footer a:hover {
+        text-decoration: underline;
     }
     a.tm-link {
       color: #f39c12;
@@ -89,7 +97,6 @@
     a.tm-link:hover {
       text-decoration: underline;
     }
-    /* YENİ: Video Bölümü Stilleri */
     .video-card {
       background-color: white;
       border-radius: 8px;
@@ -126,6 +133,28 @@
     .video-card-body {
       padding: 20px;
     }
+    /* YENİ: Hakkımda bölümü için özel buton stili */
+    .cta-buton-vurgu {
+        background-color: #f39c12;
+        border: 2px solid #f39c12;
+        color: white;
+        padding: 15px 35px;
+        text-decoration: none;
+        border-radius: 50px; /* Yuvarlak kenarlı */
+        display: inline-block;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+    }
+    .cta-buton-vurgu:hover {
+        background-color: #e67e22;
+        border-color: #e67e22;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5);
+    }
   </style>
 </head>
 <body>
@@ -151,6 +180,9 @@
           <a class="nav-link" href="#videolar">Videolar</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="egitim.html">Eğitim & Danışmanlık</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#iletisim">İletişim</a>
         </li>
       </ul>
@@ -161,7 +193,7 @@
 <section class="hero">
   <div class="container">
     <h1>Gökçe Mehmet AY</h1>
-    <p class="lead">Makine mühendisi, araştırmacı ve yazar</p>
+    <p class="lead">Teknoloji Stratejisti | Mühendislik ve Edebiyatı Birleştiren Yazar | PhD</p>
     <h3 class="mt-4">📘 Yeni Kitabım</h3>
     <p><strong>Makine Mühendisleri için 100 Prompt</strong><br>
        Yapay zekâyı mühendislikte etkili kullanmak için rehber</p>
@@ -192,6 +224,9 @@
         <h4><i class="fas fa-brain mb-2"></i><br>Yeni Kitap</h4>
         <p><strong>100 Prompt</strong> yapay zekâ için<br><a href="https://play.google.com/store/books/details?id=rRVaEQAAQBAJ" class="tm-link" target="_blank">Google Play</a></p>
       </div>
+    </div>
+    <div class="text-center mt-5">
+        <a href="egitim.html" class="cta-buton-vurgu">Kurumsal Eğitim ve Danışmanlık Hizmetleri</a>
     </div>
   </div>
 </section>
@@ -240,7 +275,7 @@
         <div class="video-card">
           <a href="https://www.youtube.com/playlist?list=PLpYlHLBy1SR6TeAFz-IvuPZ_d7KS7q4XU" target="_blank">
             <div class="video-thumbnail">
-              <img src="img/video1.png" alt="Yapay Zekâ ve Mühendislik Serisi Kapağı">
+              <img src="img/video1.png" alt="Video Serisi 1 Kapağı">
               <i class="fas fa-play-circle play-icon"></i>
             </div>
           </a>
@@ -259,8 +294,8 @@
             </div>
           </a>
           <div class="video-card-body">
-            <h5 class="card-title">Learning CAD</h5>
-            <p class="card-text">CAD öğrenmek için temel bilgileri veren kısa videolar</p>
+            <h5 class="card-title">Akademik Araçlar ve Teknikler</h5>
+            <p class="card-text">Araştırmacılar için hayatı kolaylaştıran dijital araçlar ve verimli çalışma teknikleri.</p>
           </div>
         </div>
       </div>
@@ -269,9 +304,9 @@
 </section>
 
 <section id="iletisim" class="section bg-white">
-  <div class="container">
+  <div class="container text-center">
     <h2 class="section-title">Beni Takip Edin</h2>
-    <div class="social-icons text-center">
+    <div class="social-icons">
       <a href="https://www.facebook.com/gokce.m.ay" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
       <a href="https://twitter.com/kisalar" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
       <a href="https://www.instagram.com/kisalar/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -281,7 +316,15 @@
 </section>
 
 <footer>
-  <p>© 2025 Gökçe Mehmet AY</p>
+  <div class="container">
+    <div class="mb-3">
+        <a href="#">Ana Sayfa</a>
+        <a href="egitim.html">Eğitim & Danışmanlık</a>
+        <a href="#kitaplarim">Kitaplarım</a>
+        <a href="#iletisim">İletişim</a>
+    </div>
+    <p class="mb-0">© 2025 Gökçe Mehmet AY</p>
+  </div>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

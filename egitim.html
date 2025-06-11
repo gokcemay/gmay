@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gökçe Mehmet AY | Eğitim ve Danışmanlık</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:300,400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* ====================================================== */
+        /* == ANA SİTENİZDEN GELEN TEMEL STİLLER (gmay.me) == */
+        /* ====================================================== */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8f9fa; /* Açık gri ana zemin */
+            color: #2c3e50;
+            scroll-padding-top: 70px; 
+        }
+        h1, h2, h3, h4, h5 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* ====================================================== */
+        /* == YENİ EĞİTİM SAYFASI İÇİN ÖZEL STİLLER == */
+        /* ====================================================== */
+
+        /* Sayfa Başlığı (Hero Alanı) Stili */
+        .sayfa-basligi {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .sayfa-basligi h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .sayfa-basligi .giris-metni {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* İçerik Bölümleri Stili */
+        .icerik-bolumu {
+            padding: 80px 0;
+        }
+        .icerik-bolumu h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .icerik-bolumu h3 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #34495e;
+        }
+        .icerik-bolumu p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .gri-arka-plan {
+            background-color: #ffffff; /* Beyaz arka plan */
+        }
+        .icerik-bolumu img {
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* Liste (Maddeler) Stili */
+        .icerik-bolumu ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .icerik-bolumu ul li {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .icerik-bolumu ul li i {
+            color: #f39c12; /* Ana sitenin turuncu rengi */
+            margin-right: 12px;
+            margin-top: 5px;
+        }
+        
+        /* Buton Stili (Ana sitedeki butonla aynı) */
+        .cta-buton {
+            background-color: #f39c12;
+            border: 2px solid #f39c12;
+            color: white;
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .cta-buton:hover {
+            background-color: #e67e22;
+            border-color: #e67e22;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Gökçe Mehmet AY</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#hakkimda">Hakkımda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#kitaplarim">Kitaplarım</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#videolar">Videolar</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="egitim.html">Eğitim & Danışmanlık</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#iletisim">İletişim</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="egitim-danismanlik-sayfasi">
+
+    <header class="sayfa-basligi">
+        <div class="container">
+            <h1>Geleceğe Liderlik Edin: Eğitim ve Danışmanlık Çözümleri</h1>
+            <p class="giris-metni">
+                "Makine Mühendisleri için 100 Prompt" adlı kitabımda mühendis ve sanayiciler için sunduğum özgün ve pratik yol haritasını, şimdi kurumunuza özel eğitim ve danışmanlık hizmetleriyle bir üst seviyeye taşıyoruz. Yapay zekâ devrimini bir izleyici olarak değil, bir oyuncu olarak karşılamak için tasarlanmış çözümlerimle tanışın.
+            </p>
+        </div>
+    </header>
+
+    <section id="sertifikali-egitim" class="icerik-bolumu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h2>E-Devlet Onaylı Sertifikalı Üretken Yapay Zeka Kullanımı Eğitimi</h2>
+                    <p>Kariyerinizde bir devrim yaratmaya ve günümüzün en değerli yetkinliğini kazanmaya hazır mısınız? Eskişehir Osmangazi Üniversitesi Sürekli Eğitim Merkezi (ESOGÜ SEM) iş birliği ile sunduğum bu eğitim, size üretken yapay zekanın gücünü kullanma becerisi kazandırmak için tasarlandı.</p>
+                    
+                    <h3>Bu Eğitim Kimler İçin?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i>Kariyerinde bir adım öne geçmek isteyen tüm profesyoneller.</li>
+                        <li><i class="fas fa-check-circle"></i>Ekibinin verimliliğini artırmayı hedefleyen yöneticiler.</li>
+                        <li><i class="fas fa-check-circle"></i>Yapay zeka yetkinlikleriyle fark yaratmak isteyen girişimciler ve öğrenciler.</li>
+                    </ul>
+
+                    <h3>Neden Katılmalısınız?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i>Pratik, uygulamaya yönelik bilgiler edinin.</li>
+                        <li><i class="fas fa-check-circle"></i>Sektörünüzde aranan, rekabetçi bir uzman olun.</li>
+                        <li><i class="fas fa-check-circle"></i>E-Devlet'te sorgulanabilir resmi sertifika ile yetkinliğinizi kanıtlayın.</li>
+                    </ul>
+                    <a href="https://esogusem.ogu.edu.tr/egitim/uretken-yapay-zeka-kullanimi-egitimi/" class="cta-buton" target="_blank">Detaylı Bilgi ve Kayıt</a>
+                </div>
+                <div class="col-lg-5 text-center d-none d-lg-block">
+                    <img src="img/egitim01.png" alt="Üretken Yapay Zeka Eğitimi Sertifikası" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kurumsal-danismanlik" class="icerik-bolumu gri-arka-plan">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 text-center d-none d-lg-block">
+                     <img src="img/egitim02.png" alt="Kurumsal Strateji Danışmanlığı" class="img-fluid">
+                </div>
+                <div class="col-lg-7">
+                    <h2>Kurumsal Danışmanlık ve Strateji Hizmetleri</h2>
+                    <p>Şirketinizin pazar dinamiklerini yeniden yazan yapay zeka çağında sadece ayakta kalmasını değil, aynı zamanda bu dönüşüme liderlik etmesini mi hedefliyorsunuz? Kurumunuza özel olarak tasarladığım stratejik danışmanlık hizmetleriyle, organizasyonunuzu geleceğe taşıyoruz.</p>
+                    
+                    <h3>Kurumsal Hizmetlerimiz:</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i><strong>Yapay Zeka Stratejisi Geliştirme:</strong> Kurumunuza özel, ölçülebilir ve gerçekçi bir yol haritası.</li>
+                        <li><i class="fas fa-check-circle"></i><strong>Liderlik Ekibi Dönüşüm Atölyeleri:</strong> C-Level ve yönetici ekiplerinize özel, vizyoner çalışmalar.</li>
+                        <li><i class="fas fa-check-circle"></i><strong>Özelleştirilmiş Kurum İçi Eğitimler:</strong> Çalışanlarınızın yapay zeka okuryazarlığını artıracak programlar.</li>
+                        <li><i class="fas fa-check-circle"></i><strong>Stratejik Konuşmacılık (Keynote Speaking):</strong> Etkinlikleriniz için ilham verici ve ufuk açıcı sunumlar.</li>
+                    </ul>
+                    <a href="mailto:gmehmetay@gmail.com?subject=Kurumsal Danışmanlık Talebi" class="cta-buton">Tanışma Toplantısı Talep Edin</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+  <p>© 2025 Gökçe Mehmet AY</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
