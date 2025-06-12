@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratejik Pusula: Yapay Zeka ile Mühendislik Operasyonları İnfografiği</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .section-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .kpi-card {
+            background-color: #005f73;
+            color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .kpi-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+        }
+        .kpi-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            border-left: 2px solid #94d2bd;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -2.95rem;
+            top: 0.25rem;
+            height: 1.25rem;
+            width: 1.25rem;
+            background-color: #ee9b00;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #94d2bd;
+            line-height: 1;
+        }
+        
+        /* YAZDIRMA İÇİN OPTİMİZASYON KURALLARI */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Yazdırılmayacak elementleri gizle */
+            header, footer, #abonelik {
+                display: none !important;
+            }
+
+            /* Her bir bölümün sayfa ortasında bölünmesini engelle */
+            .section-card {
+                break-inside: avoid-page !important;
+                page-break-inside: avoid !important;
+                box-shadow: none !important;
+                border: 1px solid #e5e7eb;
+            }
+            
+            /* Genel sayfa ayarları */
+            @page {
+                margin: 1.5cm;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-2xl md:text-3xl font-bold text-[#005f73]">Stratejik Pusula: YZ ile Mühendislik Operasyonları</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="giris" class="section-card text-center">
+            <h2 class="text-2xl font-bold mb-4 text-[#0a9396]">1. Giriş: Yapay Zeka Sadece Teknik Değil, Stratejik Bir Güçtür</h2>
+            <p class="max-w-3xl mx-auto">
+                Yapay zeka devrimi, mühendislik dünyasında bir paradigma değişimi yaratıyor. Üretken YZ, artık sadece bir otomasyon aracı değil, aynı zamanda stratejik düşünce süreçlerimizi besleyen, öngörü ve simülasyon yeteneklerimizi geliştiren bir ortaktır. Bu infografik, YZ'yi reaktif bir çözümden proaktif bir strateji aracına nasıl dönüştürebileceğinizi göstermektedir.
+            </p>
+        </section>
+
+        <section id="pazar-analizi" class="section-card">
+            <h2 class="text-2xl font-bold mb-2 text-[#0a9396]">2. Pazar Analizi: YZ ile Rakiplerinizden Bir Adım Önde Olun</h2>
+            <p class="mb-6">Üretken YZ, pazar büyüklüğü, büyüme oranları ve KOBİ'lerin teknoloji adaptasyon engelleri gibi kritik verileri analiz ederek, yeni pazarlara giriş stratejileri için sağlam bir temel oluşturur. YZ, pazar araştırma sürecini haftalardan saatlere indirerek çevik karar almayı mümkün kılar.</p>
+            <div class="chart-container h-80 md:h-96">
+                <canvas id="marketGrowthChart"></canvas>
+            </div>
+            <p class="text-center text-sm text-gray-500 mt-2">YZ destekli analizler, KOBİ'ler için kestirimci bakım pazarının önümüzdeki yıllarda istikrarlı bir şekilde büyüyeceğini öngörüyor.</p>
+        </section>
+
+        <section id="risk-yonetimi" class="section-card">
+            <h2 class="text-2xl font-bold mb-2 text-[#0a9396]">3. "Eğer Olursa" Senaryoları: YZ ile Riskleri Fırsata Çevirin</h2>
+            <p class="mb-6">Stratejik planlama, gelecekteki olası senaryolara hazırlıklı olmayı gerektirir. Üretken YZ, potansiyel riskleri, fırsatları ve bunların etkilerini analiz eden karmaşık "what-if" senaryolarını hızla oluşturabilir. Bu, riskleri proaktif bir şekilde yönetmenizi sağlar.</p>
+            <div class="chart-container h-80 md:h-96">
+                <canvas id="riskAnalysisChart"></canvas>
+            </div>
+            <p class="text-center text-sm text-gray-500 mt-2">Yeni bir ürün lansmanı için potansiyel risklerin olasılık ve etki bazında değerlendirilmesi.</p>
+        </section>
+        
+        <section id="kaynak-optimizasyonu" class="section-card">
+            <h2 class="text-2xl font-bold mb-2 text-[#0a9396]">4. Kaynak Optimizasyonu: Yetenekleri En Verimli Şekilde Yönetin</h2>
+            <p class="mb-6">Doğru kaynakların doğru zamanda doğru yerde olması, operasyonel mükemmelliğin anahtarıdır. YZ, proje planlaması, bütçe dağılımı ve insan kaynağı tahsisinde veriye dayalı optimizasyon önerileri sunarak depo içi malzeme akışı gibi süreçleri iyileştirir.</p>
+             <div class="flex flex-col md:flex-row items-center justify-around text-center space-y-4 md:space-y-0">
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center text-4xl mb-2">📦</div>
+                    <p class="font-semibold">Veri Analizi</p>
+                    <p class="text-sm text-gray-600">Depo planı ve sipariş verileri</p>
+                </div>
+                <div class="flow-arrow transform rotate-90 md:rotate-0">→</div>
+                 <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center text-4xl mb-2">🧠</div>
+                    <p class="font-semibold">YZ Optimizasyonu</p>
+                    <p class="text-sm text-gray-600">Toplama stratejisi üretimi</p>
+                </div>
+                 <div class="flow-arrow transform rotate-90 md:rotate-0">→</div>
+                 <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center text-4xl mb-2">⏱️</div>
+                    <p class="font-semibold">Sonuç</p>
+                    <p class="text-sm text-gray-600">Azalan toplama süresi</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="kaizen" class="section-card">
+            <h2 class="text-2xl font-bold mb-2 text-[#0a9396]">5. Kaizen 2.0: Yapay Zeka ile Sürekli İyileştirme</h2>
+            <p class="mb-6">Kaizen felsefesi, YZ ile yeni bir boyut kazanıyor. YZ, Planla-Uygula-Kontrol Et-Önlem Al (PDCA) döngüsünün her aşamasını hızlandırır, verilerdeki gizli verimsizlikleri tespit eder ve yaratıcı çözümler üreterek sürekli iyileştirme kültürünü destekler.</p>
+            <div class="md:grid md:grid-cols-2 gap-8 items-center">
+                <div class="chart-container h-64 md:h-80">
+                    <canvas id="pdcaChart"></canvas>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-6 md:mt-0">
+                    <div class="kpi-card bg-[#0a9396]">
+                        <div class="kpi-value">25%</div>
+                        <div class="kpi-label">Duruş Süresi Azalması</div>
+                    </div>
+                    <div class="kpi-card bg-[#ee9b00]">
+                        <div class="kpi-value">18%</div>
+                        <div class="kpi-label">OEE Artışı</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="israf-avciligi" class="section-card">
+            <h2 class="text-2xl font-bold mb-2 text-[#0a9396]">6. İsraf Avcılığı: Verilerdeki Gizli Verimsizlikleri Tespit Edin</h2>
+            <p class="mb-6">Üretim hatlarındaki bekleme, gereksiz hareket gibi israflar genellikle gözden kaçar. YZ, sensör verilerini, üretim planlarını ve operatör geri bildirimlerini analiz ederek bu gizli israfları ortaya çıkarır ve operasyonel verimliliği artırmak için somut öneriler sunar.</p>
+            <div class="chart-container h-80 md:h-96">
+                <canvas id="wasteAnalysisChart"></canvas>
+            </div>
+             <p class="text-center text-sm text-gray-500 mt-2">YZ tarafından tespit edilen üretim hattı israf türlerinin dağılımı.</p>
+        </section>
+
+        <section id="tedarik-zinciri" class="section-card">
+            <h2 class="text-2xl font-bold mb-2 text-[#0a9396]">7. Tedarik Zincirinde Devrim: Talebi Öngörün</h2>
+            <p class="mb-6">Tedarik zincirindeki belirsizlikler, YZ'nin tahminsel analiz yetenekleri ile yönetilebilir. Geçmiş satışlar, pazar trendleri ve sezonluk verileri kullanarak daha isabetli talep tahminleri oluşturmak, stok maliyetlerini düşürür ve müşteri memnuniyetini artırır.</p>
+             <div class="chart-container h-80 md:h-96">
+                <canvas id="demandForecastChart"></canvas>
+            </div>
+            <p class="text-center text-sm text-gray-500 mt-2">Gerçekleşen satışlar ve YZ destekli talep tahmini karşılaştırması.</p>
+        </section>
+
+        <section id="yol-haritasi" class="section-card">
+            <h2 class="text-2xl font-bold mb-2 text-[#0a9396]">8. Teknoloji Yol Haritası: 5 Adımda YZ Adaptasyonu</h2>
+            <p class="mb-6">YZ'yi başarılı bir şekilde uygulamak, plansız bir çabadan ziyade stratejik bir yol haritası gerektirir. İşte başarıya giden 5 temel adım:</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 class="font-bold text-[#bb3e03]">1. Küçük Başla, Hızlı Kazan</h3>
+                    <p>Yüksek etkili ve uygulaması kolay bir pilot proje belirleyin.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 class="font-bold text-[#bb3e03]">2. Veri Altyapını Hazırla</h3>
+                    <p>Kaliteli ve erişilebilir veri, YZ'nin yakıtıdır.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 class="font-bold text-[#bb3e03]">3. Yetkinlik Geliştir</h3>
+                    <p>Ekibinizi prompt mühendisliği ve YZ okuryazarlığı konusunda eğitin.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h3 class="font-bold text-[#bb3e03]">4. Kültürü Dönüştür</h3>
+                    <p>Deneyi ve veriye dayalı karar almayı teşvik eden bir ortam yaratın.</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-dot" style="background-color: #9b2226;"></div>
+                    <h3 class="font-bold text-[#bb3e03]">5. İşbirliği Yap</h3>
+                    <p>Departmanlar arası ve teknoloji ortaklarıyla sinerji oluşturun.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="insan-yz" class="section-card">
+            <h2 class="text-2xl font-bold mb-2 text-[#0a9396]">9. İnsan ve YZ Dengesi: Geleceğin Lideri Nasıl Olmalı?</h2>
+            <p class="mb-6">En başarılı uygulamalar, insan ve yapay zekayı birleştiren "Human-in-the-Loop" yaklaşımını benimser. YZ, rutin analizleri üstlenirken, liderlere ve mühendislere strateji, yaratıcılık ve karmaşık problem çözme gibi alanlara odaklanmaları için zaman kazandırır. Unutmayın, YZ bir karar verici değil, güçlü bir danışmandır.</p>
+             <div class="flex items-center justify-center p-6 bg-slate-100 rounded-lg">
+                <div class="text-center">
+                    <p class="text-5xl font-bold text-[#005f73]">💡</p>
+                    <p class="mt-2 font-semibold">YZ Rolü: Analiz Et & Öner</p>
+                </div>
+                <div class="mx-8 text-4xl font-light text-gray-400">+</div>
+                <div class="text-center">
+                    <p class="text-5xl font-bold text-[#ca6702]">🧑‍💼</p>
+                    <p class="mt-2 font-semibold">İnsan Rolü: Doğrula & Karar Ver</p>
+                </div>
+             </div>
+        </section>
+
+        <section id="sonuc" class="section-card">
+            <h2 class="text-2xl font-bold mb-4 text-[#0a9396]">10. Sonuç: Stratejik YZ Kontrol Listeniz</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li>Pazar dinamiklerini ve rakip stratejilerini analiz etmek için YZ'yi kullanıyor muyuz?</li>
+                <li>Potansiyel krizlere karşı "what-if" senaryoları oluşturduk mu?</li>
+                <li>Kaizen ve PDCA döngülerimizi YZ ile hızlandırıyor muyuz?</li>
+                <li>Operasyonlarımızdaki gizli israfları tespit etmek için YZ analizi yapıyor muyuz?</li>
+                <li>Tedarik zincirinin halkalarını YZ ile güçlendirdik mi?</li>
+                <li>Şirketimizin YZ adaptasyonu için net ve uygulanabilir bir yol haritası var mı?</li>
+                <li>YZ'yi bir rakip olarak değil, ekibimizin bir parçası olarak konumlandıran bir kültür oluşturduk mu?</li>
+            </ul>
+        </section>
+
+        <section id="abonelik" class="section-card text-center">
+            <h2 class="text-2xl font-bold mb-4 text-[#0a9396]">Daha Fazla Bilgi ve Abonelik</h2>
+            <p class="max-w-3xl mx-auto mb-6">
+                Yapay zeka ve mühendislik konularındaki güncel yazılarımı takip etmek için bültenime abone olabilirsiniz.
+            </p>
+            <div class="mt-6">
+                <a href="https://gmehmetay.substack.com/" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#ee9b00] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#ca6702] transition-colors duration-300 text-lg shadow-md hover:shadow-lg">
+                    Bültene Abone Ol
+                </a>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+        <p>&copy; 2025 Stratejik Pusula İnfografiği. Tüm hakları saklıdır.</p>
+    </footer>
+
+<script>
+    const COLORS = {
+        blue: '#0a9396',
+        darkBlue: '#005f73',
+        teal: '#94d2bd',
+        sand: '#e9d8a6',
+        orange: '#ee9b00',
+        darkOrange: '#ca6702',
+        red: '#ae2012',
+        darkRed: '#9b2226'
+    };
+
+    function wrapLabels(label, maxWidth) {
+        if (typeof label !== 'string' || label.length <= maxWidth) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        for (const word of words) {
+            if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                lines.push(currentLine);
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        }
+        if (currentLine.length > 0) {
+            lines.push(currentLine);
+        }
+        return lines;
+    }
+
+    const defaultTooltipCallback = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                          return label.join(' ');
+                        } else {
+                          return label;
+                        }
+                    }
+                }
+            },
+            legend: {
+                labels: {
+                    color: '#374151'
+                }
+            }
+        },
+        scales: {
+            y: {
+                ticks: { color: '#374151' }
+            },
+            x: {
+                ticks: { color: '#374151' }
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false
+    };
+
+    const marketGrowthCtx = document.getElementById('marketGrowthChart').getContext('2d');
+    new Chart(marketGrowthCtx, {
+        type: 'bar',
+        data: {
+            labels: ['2025', '2026', '2027', '2028', '2029'],
+            datasets: [{
+                label: 'KOBİ Kestirimci Bakım Pazar Büyüklüğü (Milyon $)',
+                data: [45, 58, 75, 98, 130],
+                backgroundColor: COLORS.blue,
+                borderColor: COLORS.darkBlue,
+                borderWidth: 1
+            }]
+        },
+        options: defaultTooltipCallback
+    });
+
+    const riskAnalysisCtx = document.getElementById('riskAnalysisChart').getContext('2d');
+    const riskLabels = ['Teknik Yetersizlik', 'Pazar Kabulü', 'Operasyonel Entegrasyon', 'Maliyet Aşımları', 'Rakip Hamleleri'].map(l => wrapLabels(l, 16));
+    new Chart(riskAnalysisCtx, {
+        type: 'radar',
+        data: {
+            labels: riskLabels,
+            datasets: [
+                {
+                    label: 'Olasılık',
+                    data: [3, 4, 5, 4, 3],
+                    backgroundColor: 'rgba(238, 155, 0, 0.2)',
+                    borderColor: COLORS.orange,
+                    borderWidth: 2,
+                    pointBackgroundColor: COLORS.orange
+                },
+                {
+                    label: 'Etki',
+                    data: [5, 5, 4, 4, 4],
+                    backgroundColor: 'rgba(174, 32, 18, 0.2)',
+                    borderColor: COLORS.red,
+                    borderWidth: 2,
+                    pointBackgroundColor: COLORS.red
+                }
+            ]
+        },
+        options: {
+            ...defaultTooltipCallback,
+            scales: {
+                r: {
+                    angleLines: { color: '#d1d5db' },
+                    grid: { color: '#e5e7eb' },
+                    pointLabels: {
+                         font: {
+                            size: 12
+                        },
+                        color: '#374151'
+                    },
+                    ticks: {
+                        backdropColor: 'transparent',
+                        color: '#4b5563',
+                        stepSize: 1
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 5
+                }
+            }
+        }
+    });
+    
+    const pdcaCtx = document.getElementById('pdcaChart').getContext('2d');
+    new Chart(pdcaCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Planla (YZ Analizi)', 'Uygula', 'Kontrol Et (YZ İzleme)', 'Önlem Al'],
+            datasets: [{
+                data: [25, 25, 25, 25],
+                backgroundColor: [COLORS.blue, COLORS.orange, COLORS.teal, COLORS.darkOrange],
+                hoverOffset: 4
+            }]
+        },
+        options: defaultTooltipCallback
+    });
+    
+    const wasteAnalysisCtx = document.getElementById('wasteAnalysisChart').getContext('2d');
+    new Chart(wasteAnalysisCtx, {
+        type: 'bar',
+        data: {
+            labels: ['İstasyon A', 'İstasyon B', 'İstasyon C'],
+            datasets: [
+                {
+                    label: 'Bekleme Süresi (dk)',
+                    data: [45, 25, 60],
+                    backgroundColor: COLORS.blue,
+                },
+                {
+                    label: 'Gereksiz Hareket (adet)',
+                    data: [120, 90, 150],
+                    backgroundColor: COLORS.orange,
+                },
+                {
+                    label: 'Hatalı Üretim (adet)',
+                    data: [15, 8, 22],
+                    backgroundColor: COLORS.red,
+                }
+            ]
+        },
+        options: { ...defaultTooltipCallback, scales: { x: { stacked: true }, y: { stacked: true } } }
+    });
+
+    const demandForecastCtx = document.getElementById('demandForecastChart').getContext('2d');
+    new Chart(demandForecastCtx, {
+        type: 'line',
+        data: {
+            labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran'],
+            datasets: [
+                {
+                    label: 'Gerçekleşen Satışlar',
+                    data: [1200, 1350, 1500, 1450, 1600, 1750],
+                    borderColor: COLORS.darkBlue,
+                    backgroundColor: 'transparent',
+                    tension: 0.1,
+                    fill: false
+                },
+                {
+                    label: 'YZ Tahmini',
+                    data: [1250, 1300, 1520, 1480, 1630, 1720],
+                    borderColor: COLORS.orange,
+                    backgroundColor: 'transparent',
+                    borderDash: [5, 5],
+                    tension: 0.1,
+                    fill: false
+                }
+            ]
+        },
+        options: defaultTooltipCallback
+    });
+
+</script>
+</body>
+</html>
