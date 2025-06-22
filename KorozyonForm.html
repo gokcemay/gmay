@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saha Kontrol Formu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f4f4f4;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .description {
+      font-size: 0.95em;
+      color: #555;
+      background: #e9f5ff;
+      padding: 10px;
+      border-left: 4px solid #007BFF;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    input[type="file"] {
+      padding: 4px;
+    }
+    .submit-btn {
+      background-color: #007BFF;
+      color: #fff;
+      margin-top: 20px;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<form id="sahaForm" enctype="multipart/form-data">
+  <h2>Saha Kontrol Formu</h2>
+
+  <div class="description">
+    Bu form <strong>korozyon eğitimi</strong> için örnek olarak hazırlanmıştır. Google Forms, Microsoft Forms, Typeform gibi platformlara özel olarak da uyarlanabilir ya da Power Apps ile özel bir mobil uygulamaya entegre form oluşturulabilir. Destek için <a href="https://gmay.me/egitim" target="_blank">https://gmay.me/egitim</a>
+  </div>
+
+  <label for="tesis">Tesis/Bölüm Adı *</label>
+  <input type="text" id="tesis" name="tesis" required>
+
+  <label for="alan">Kontrol Yapılan Alan *</label>
+  <input type="text" id="alan" name="alan" required>
+
+  <label for="temizlik">Genel Temizlik Durumu *</label>
+  <select id="temizlik" name="temizlik" required>
+    <option value="">Seçiniz</option>
+    <option value="Temiz">Temiz</option>
+    <option value="Orta">Orta</option>
+    <option value="Kirli">Kirli</option>
+    <option value="Tehlikeli">Tehlikeli</option>
+  </select>
+
+  <label for="sızıntı">Pas/Sızıntı Tespiti *</label>
+  <select id="sızıntı" name="sızıntı" required>
+    <option value="">Seçiniz</option>
+    <option value="Var">Var</option>
+    <option value="Yok">Yok</option>
+    <option value="Gözlemlenemedi">Gözlemlenemedi</option>
+  </select>
+
+  <label for="gürültü">Makine Gürültü Durumu *</label>
+  <select id="gürültü" name="gürültü" required>
+    <option value="">Seçiniz</option>
+    <option value="Normal">Normal</option>
+    <option value="Artmış">Artmış</option>
+    <option value="Anormal Ses Var">Anormal Ses Var</option>
+  </select>
+
+  <label for="göstergeler">Uyarı Işıkları / Göstergeler *</label>
+  <select id="göstergeler" name="göstergeler" required>
+    <option value="">Seçiniz</option>
+    <option value="Normal">Normal</option>
+    <option value="Arıza Gösteriyor">Arıza Gösteriyor</option>
+    <option value="Çalışmıyor">Kapalı / Çalışmıyor</option>
+  </select>
+
+  <label for="foto">Fotoğraf Ekle (Pas, sızıntı vb.)</label>
+  <input type="file" id="foto" name="foto" accept="image/*">
+
+  <label for="notlar">Açıklama / Notlar</label>
+  <textarea id="notlar" name="notlar" rows="4"></textarea>
+
+  <label for="adsoyad">Ad Soyad *</label>
+  <input type="text" id="adsoyad" name="adsoyad" required>
+
+  <label for="pozisyon">Pozisyon *</label>
+  <input type="text" id="pozisyon" name="pozisyon" required>
+
+  <button type="submit" class="submit-btn">Gönder</button>
+</form>
+
+</body>
+</html>
