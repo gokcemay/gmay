@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pres Hattı Hızlı Teşhis Akış Şeması</title>
+    <style>
+        /* Genel Sayfa Stilleri */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Ana Konteyner */
+        .flowchart-container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Her Adım İçin Kart Stili */
+        .step {
+            background-color: #ffffff;
+            border: 1px solid #d1d9e6;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            display: none; /* Başlangıçta tüm adımlar gizli */
+        }
+
+        /* Başlangıçta gösterilecek ilk adım */
+        .step.active {
+            display: block;
+        }
+
+        /* Başlıklar */
+        h1 {
+            color: #1e3a5f;
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #2c5282;
+            margin-top: 0;
+        }
+        
+        h3 {
+            color: #3b66a3;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        /* Listeler */
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            background-color: #f8fafc;
+            border-left: 4px solid #4a90e2;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+
+        /* Referans Değer ve Uyarı Blokları */
+        .reference-block, .safety-warning, .solution-block {
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            border-left-width: 5px;
+            border-left-style: solid;
+        }
+
+        .reference-block {
+            background-color: #eef2f7;
+            border-color: #6c757d;
+        }
+
+        .safety-warning {
+            background-color: #fffbe6;
+            border-color: #f59e0b;
+            font-weight: bold;
+        }
+        
+        .solution-block {
+            background-color: #e6f7f1;
+            border-color: #28a745;
+        }
+
+        /* Karar ve Butonlar */
+        .decision {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+            text-align: center;
+        }
+
+        .decision p {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+            transition: transform 0.2s;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-yes {
+            background-color: #28a745;
+        }
+        .btn-yes:hover {
+            background-color: #218838;
+        }
+
+        .btn-no {
+            background-color: #dc3545;
+        }
+        .btn-no:hover {
+            background-color: #c82333;
+        }
+        
+        .btn-reset {
+            background-color: #6c757d;
+        }
+        .btn-reset:hover {
+            background-color: #5a6268;
+        }
+        
+        strong {
+            color: #2c5282;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="flowchart-container">
+        <h1>Pres Hattı Hızlı Teşhis Akış Şeması</h1>
+        <p style="text-align: center; color: #555;"><strong>Problem:</strong> Parça Yüzeyinde Leke / Bozulma Tespiti</p>
+
+        <div id="step1" class="step active">
+            <h2>ADIM 1: Proses Parametre Kontrolü (&lt; 10 Dakika)</h2>
+            <h3>Kontrol:</h3>
+            <p>Proses parametreleri, tanımlanan reçete (setup sheet) ile uyumlu mu?</p>
+            <h3>Metot/Ekipman:</h3>
+            <p>Enjeksiyon presi kontrol paneli, proses reçete dokümanı.</p>
+            <h3>Referans Değerler:</h3>
+            <ul>
+                <li><strong>Kalıp Sıcaklığı:</strong> Ayarlanan ve okunan değerler eşleşiyor mu? (Örn: Ayar: 60°C, Okunan: 59-61°C)</li>
+                <li><strong>Meme/Kovan Sıcaklıkları:</strong> Hammadde spesifikasyonlarını aşıyor mu?</li>
+                <li><strong>Enjeksiyon Hızı/Basıncı:</strong> Aşırı yüksek hız yanma lekesi yapar mı?</li>
+                <li><strong>Çevrim/Bekleme Süresi:</strong> Hammadde kovanda yanıyor mu?</li>
+            </ul>
+            <div class="decision">
+                <p>Parametrelerde sapma var mıydı ve düzeltilince sorun çözüldü mü?</p>
+                <button class="btn btn-yes" onclick="showStep('solution1')">Evet</button>
+                <button class="btn btn-no" onclick="showStep('step2')">Hayır</button>
+            </div>
+        </div>
+        
+        <div id="solution1" class="step">
+            <h2>Çözüm Bulundu: Hatalı Proses Parametresi</h2>
+            <div class="solution-block">
+                <h3>Aksiyon:</h3>
+                <p>Reçeteye uygun doğru parametreler ayarlandı.</p>
+                <h3>Kayıt ve Önleme:</h3>
+                <p>Sapmanın nedeni (operatör hatası, yanlış reçete vb.) ve yapılan düzeltme bakım/üretim formuna işlenir. Vardiya başlangıç kontrol listesine parametre doğruluğu eklenir.</p>
+            </div>
+            <div class="decision">
+                <button class="btn btn-reset" onclick="showStep('step1')">Başa Dön</button>
+            </div>
+        </div>
+
+        <div id="step2" class="step">
+            <h2>ADIM 2: Hammadde Kontrolü (&lt; 15 Dakika)</h2>
+            <h3>Kontrol:</h3>
+            <p>Kullanılan hammadde doğru mu ve doğru koşullarda mı?</p>
+            <h3>Metot/Ekipman:</h3>
+            <p>Hammadde kurutucu (dryer), nem ölçer, hammadde etiketi.</p>
+            <h3>Referans Değerler:</h3>
+            <ul>
+                <li><strong>Malzeme Tipi/Lot No:</strong> İş emri ile makinedeki aynı mı?</li>
+                <li><strong>Nem İçeriği:</strong> Kurutma sıcaklığı/süresi doğru mu? Nem, "gümüşi lekelere" neden olabilir.</li>
+                <li><strong>Klorür/Agresif Katkı:</strong> Malzeme TDS'i kontrol edildi mi? (PVC, FR katkılı vb.)</li>
+                <li><strong>Kirlilik:</strong> Hopper içinde yabancı madde var mı?</li>
+            </ul>
+            <div class="decision">
+                <p>Hammadde veya koşullarında bir sorun tespit edildi mi?</p>
+                <button class="btn btn-yes" onclick="showStep('solution2')">Evet</button>
+                <button class="btn btn-no" onclick="showStep('step3')">Hayır</button>
+            </div>
+        </div>
+        
+        <div id="solution2" class="step">
+            <h2>Çözüm Bulundu: Hatalı Hammadde veya Kurutma</h2>
+            <div class="solution-block">
+                <h3>Aksiyon:</h3>
+                <p>Yanlış malzeme boşaltıldı, kurutma parametreleri düzeltildi veya hopper temizlendi.</p>
+                <h3>Kayıt ve Önleme:</h3>
+                <p>"Uygunsuz hammadde" veya "Yetersiz kurutma" olarak kaydedilir. Depo ve hammadde hazırlama süreçleri için iyileştirme yapılır.</p>
+            </div>
+            <div class="decision">
+                <button class="btn btn-reset" onclick="showStep('step1')">Başa Dön</button>
+            </div>
+        </div>
+        
+        <div id="step3" class="step">
+            <h2>ADIM 3: Soğutma Suyu Kontrolü (&lt; 20 Dakika)</h2>
+            <h3>Kontrol:</h3>
+            <p>Kalıp soğutma suyunun kimyasal ve fiziksel özellikleri uygun mu? (Özellikle leke pas izi gibiyse kritiktir)</p>
+            <h3>Metot/Ekipman:</h3>
+            <p>pH metre, iletkenlik (TDS) ölçer, numune kabı.</p>
+            <h3>Referans Değerler:</h3>
+            <ul>
+                <li><strong>pH Değeri:</strong> 7.5 – 9.0 aralığında mı? (Düşük pH=Asidik/Korozif)</li>
+                <li><strong>İletkenlik (TDS):</strong> Belirlenen limitlerin altında mı? (Yüksek TDS=Yüksek Korozyon Riski)</li>
+                <li><strong>Görünüm/Koku:</strong> Suda pas rengi, tortu veya yosunlaşma kokusu var mı?</li>
+            </ul>
+            <div class="decision">
+                <p>Soğutma suyunda standart dışı bir durum tespit edildi mi?</p>
+                <button class="btn btn-yes" onclick="showStep('solution3')">Evet</button>
+                <button class="btn btn-no" onclick="showStep('step4')">Hayır</button>
+            </div>
+        </div>
+
+        <div id="solution3" class="step">
+            <h2>Çözüm Bulundu: Uygunsuz Soğutma Suyu Kalitesi</h2>
+            <div class="solution-block">
+                <h3>Aksiyon:</h3>
+                <p>Merkezi bakım birimine haber verilir. Filtreler temizlenir. Acil durum için geçici olarak şartlandırılmış su kullanılır.</p>
+                <h3>Kayıt ve Önleme:</h3>
+                <p>"Uygunsuz soğutma suyu kalitesi" olarak kaydedilir. Su şartlandırma sisteminin ve filtrelerin periyodik bakım planı gözden geçirilir.</p>
+            </div>
+            <div class="decision">
+                <button class="btn btn-reset" onclick="showStep('step1')">Başa Dön</button>
+            </div>
+        </div>
+        
+        <div id="step4" class="step">
+            <h2>ADIM 4: Yüzeysel Kalıp ve Vent Kontrolü</h2>
+            <div class="safety-warning">
+                <strong>DİKKAT!</strong> Bu adım, presin durdurulmasını ve temel iş güvenliği önlemlerinin (İSG) alınmasını gerektirir.
+            </div>
+            <h3>Kontrol:</h3>
+            <p>Kalıp yüzeyinde ve havalandırma (vent) kanallarında anormallik var mı?</p>
+            <h3>Gözlemler:</h3>
+            <ul>
+                <li><strong>Havalandırma Kanalları (Vents):</strong> Plastik çapağı, gaz artığı veya yağ ile tıkalı mı? (Tıkalı vent = yanma lekesi)</li>
+                <li><strong>Yüzeyde Birikinti:</strong> Lekenin oluştuğu bölgede yapışmış gaz artığı veya pas lekesi var mı?</li>
+                <li><strong>Soğutma Sızıntısı:</strong> Kalıp ek yerlerinden, o-ring'lerden veya rekorlardan su sızıntısı var mı?</li>
+            </ul>
+            <div class="decision">
+                <p>Bir anormallik tespit edilip temizlikle sorun çözüldü mü?</p>
+                <button class="btn btn-yes" onclick="showStep('solution4')">Evet</button>
+                <button class="btn btn-no" onclick="showStep('step5')">Hayır</button>
+            </div>
+        </div>
+        
+        <div id="solution4" class="step">
+            <h2>Çözüm Bulundu: Yetersiz Kalıp Temizliği / Sızıntı</h2>
+            <div class="solution-block">
+                <h3>Aksiyon:</h3>
+                <p>Havalandırma kanalları temizlendi. Yüzeydeki birikinti uygun solvent ile silindi. Sızıntı yapan rekor sıkıldı veya o-ring değişimi için plan yapıldı.</p>
+                <h3>Kayıt ve Önleme:</h3>
+                <p>"Tıkalı havalandırma kanalları" veya "Yetersiz kalıp temizliği" olarak kaydedilir. Kalıbın periyodik bakım talimatı ve sıklığı gözden geçirilir.</p>
+            </div>
+            <div class="decision">
+                <button class="btn btn-reset" onclick="showStep('step1')">Başa Dön</button>
+            </div>
+        </div>
+
+        <div id="step5" class="step">
+            <h2>ADIM 5: Detaylı Kalıp İçi Denetim ve Kök Neden Analizi</h2>
+            <div class="safety-warning">
+                <strong>Problem Devam Ediyor.</strong> Hızlı teşhis fazı tamamlandı. Sorun kalıbın içinde veya daha karmaşık bir nedene bağlı olabilir.
+            </div>
+            <h3>Sonraki Adımlar:</h3>
+            <ol style="padding-left: 20px;">
+                <li>Üretimi durdur ve kalıbı güvenli bir şekilde presten sök.</li>
+                <li>Kalıp Bakım Atölyesi'nde kalıbı dikkatlice sök.</li>
+                <li><strong>Detaylı Kontrolleri Yap:</strong>
+                    <ul>
+                        <li><strong>Soğutma Kanalları:</strong> İçleri paslı mı, kireç veya tortu ile tıkalı mı?</li>
+                        <li><strong>Malzeme Uygunluğu:</strong> Kalıp çeliği, basılan hammaddeye uygun mu? Yüzeyde pitting (oyuklanma) var mı?</li>
+                        <li><strong>Kaplama Durumu:</strong> Kaplamada dökülme, çizik veya aşınma var mı?</li>
+                    </ul>
+                </li>
+                <li><strong>Kök Neden Analizi (KNA) Toplantısı Düzenle:</strong> Kalite, Üretim ve Bakım ekipleriyle toplanan tüm verileri değerlendir.</li>
+                <li>Gerekli onarım (kanal temizliği, parlatma, yeniden kaplama vb.) ve önleyici faaliyet planını oluştur.</li>
+            </ol>
+            <div class="decision">
+                <button class="btn btn-reset" onclick="showStep('step1')">Yeni Bir Sorun İçin Başa Dön</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Başlangıçta tüm adımları gizle, sadece 'active' olanı göster
+        function showStep(stepId) {
+            // Tüm step div'lerini bul
+            const steps = document.querySelectorAll('.step');
+            // Hepsini gizle
+            steps.forEach(step => {
+                step.style.display = 'none';
+                step.classList.remove('active');
+            });
+            
+            // Sadece istenen ID'ye sahip olanı göster
+            const nextStep = document.getElementById(stepId);
+            if (nextStep) {
+                nextStep.style.display = 'block';
+                nextStep.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
